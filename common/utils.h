@@ -11,6 +11,55 @@
 #include <vector>
 #include "common/data_type.h"
 
+class BContainer {
+ public:
+  BContainer(int start, int end) {
+    if (start < 0 || end < 0 || start > end) {
+      throw std::runtime_error("BContainer init error");
+    }
+
+    this->offset = start;
+    auto tmp = end - start;
+    for (auto i = 0; i < tmp; i++) {
+      datas.push_back(std::list<const Row*>());
+    }
+  }
+
+  void insert(const Row* row) {
+    auto idx = row->b - offset;
+    if (idx < 0 || idx >= datas.size()) {
+      throw std::runtime_error("BContainer insert error");
+    }
+    datas[idx].push_back(row);
+  }
+  // 合并 first 和 second，返回合并后的 BContainer
+  static std::shared_ptr<BContainer> merge(
+      std::shared_ptr<BContainer>& first,
+      std::shared_ptr<BContainer>& second) {
+    if (first->offset != second->offset ||
+        first->datas.size() != second->datas.size()) {
+      throw std::runtime_error("BContainer merge error");
+    }
+    int size = first->datas.size();
+    for (int i = 0; i < size; i++) {
+      first->datas[i].splice(first->datas[i].end(), second->datas[i]);
+    }
+    return first;
+  }
+
+  void iterator(std::function<void(const Row*)> fn) {
+    for (auto& item : datas) {
+      for (auto& row : item) {
+        fn(row);
+      }
+    }
+  }
+
+ private:
+  int offset{0};
+  std::vector<std::list<const Row*>> datas;
+};
+
 struct TaskResult {
   int count{0};
   std::map<std::string, int> datas;

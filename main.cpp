@@ -86,19 +86,21 @@ TaskResult task2(const Row* rows, int nrows) {
   return taskResult;
 }
 
+// 希望按照 b 的顺序来进行排序输出
 TaskResult task3(const Row* rows, int nrows) {
   if (nrows <= 0) {
     return TaskResult{};
   }
 
-  vector<shared_ptr<multiset<const Row*, LessBPointer>>> results;
+  vector<shared_ptr<BContainer>> results;
   atomic<int> validCount(0);
   auto threadNum = std::thread::hardware_concurrency() - 1;
 
   for (int i = 0; i < threadNum; ++i) {
-    results.emplace_back(make_shared<multiset<const Row*, LessBPointer>>());
+    results.emplace_back(make_shared<BContainer>(10, 50));
   }
 
+  // 根据 B 的值进行分组
   measureFuncTime("task3-phase-1", [&]() {
     ParallelFor(threadNum, 0, nrows, [&](int threadIdx, int start, int end) {
       getRowsInSortArray(rows, start, end, LessAB(), [&](const Row* row) {
@@ -108,18 +110,21 @@ TaskResult task3(const Row* rows, int nrows) {
     });
   });
 
-  auto merge = std::make_shared<std::multiset<const Row*, LessBPointer>>();
-  measureFuncTime("task3-phase-2",
-                  [&]() { merge = ParallelForMerge(results); });
+  auto merge = results[0];
+  measureFuncTime("task3-phase-2", [&]() {
+    for (int i = 1; i < threadNum; ++i) {
+      merge = BContainer::merge(merge, results[i]);
+    }
+  });
 
   TaskResult taskResult;
   // print result
   measureFuncTime("task3-phase-3", [&]() {
     std::cout << "task3 count: " << validCount << endl;
-    for (auto& idx : *merge) {
+    merge->iterator([&](const Row* idx) {
       // std::cout << idx->ToString() << endl;
       taskResult.insert(*idx);
-    }
+    });
   });
   return taskResult;
 }
@@ -146,23 +151,23 @@ void geneTestData(const string& filename) {
   mt19937 gen(rd());
   uniform_int_distribution<int> a_dist(3001, 10000);
   uniform_int_distribution<int> b_dist(0, 60);
-  for (int i = 0; i < 5000000; i++) {
+  for (int i = 0; i < 50000; i++) {
     file << "1000," << b_dist(gen) << std::endl;
   }
-  for (int i = 0; i < 5000000; i++) {
+  for (int i = 0; i < 50000; i++) {
     file << "2000," << b_dist(gen) << std::endl;
   }
-  for (int i = 0; i < 5000000; i++) {
+  for (int i = 0; i < 50000; i++) {
     file << "3000," << b_dist(gen) << std::endl;
   }
-  for (int i = 0; i < 5000000; i++) {
+  for (int i = 0; i < 50000; i++) {
     file << a_dist(gen) << "," << b_dist(gen) << std::endl;
   }
   file.close();
 }
 
 int main() {
-  // geneTestData("./data.txt");
+  geneTestData("./data.txt");
   TaskResult t1, t2, t3;
   auto rows = readRows("./data.txt");
   measureFuncTime("task1", [&]() { t1 = task1(rows->data(), rows->size()); });

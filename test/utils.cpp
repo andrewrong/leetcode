@@ -413,3 +413,55 @@ TEST(GetRowsInSortArrayTest, EmptyInput) {
 
   EXPECT_EQ(results.size(), 0);
 }
+
+TEST(BContainerTest, Insert) {
+  BContainer container(0, 10);
+  Row row1 = {1, 5};
+  Row row2 = {2, 7};
+  Row row3 = {3, 12};
+  container.insert(&row1);
+  container.insert(&row2);
+  EXPECT_THROW(container.insert(&row3), std::runtime_error);
+}
+
+TEST(BContainerTest, Merge) {
+  auto container1 = std::make_shared<BContainer>(0, 20);
+  auto container2 = std::make_shared<BContainer>(0, 20);
+  Row row1 = {1, 5};
+  Row row2 = {2, 7};
+  Row row3 = {3, 12};
+  container1->insert(&row1);
+  container1->insert(&row2);
+  container2->insert(&row3);
+  auto merged = BContainer::merge(container1, container2);
+  std::vector<const Row*> results;
+  merged->iterator([&results](const Row* row) { results.push_back(row); });
+  EXPECT_EQ(results.size(), 3);
+  EXPECT_EQ(results[0]->a, 1);
+  EXPECT_EQ(results[0]->b, 5);
+  EXPECT_EQ(results[1]->a, 2);
+  EXPECT_EQ(results[1]->b, 7);
+  EXPECT_EQ(results[2]->a, 3);
+  EXPECT_EQ(results[2]->b, 12);
+}
+
+TEST(BContainerTest, MergeError) {
+  auto container1 = std::make_shared<BContainer>(0, 10);
+  auto container2 = std::make_shared<BContainer>(5, 15);
+  EXPECT_THROW(BContainer::merge(container1, container2), std::runtime_error);
+}
+
+TEST(BContainerTest, Iterator) {
+  BContainer container(0, 20);
+  Row row1 = {1, 5};
+  Row row2 = {2, 7};
+  Row row3 = {3, 12};
+  container.insert(&row1);
+  container.insert(&row2);
+  container.insert(&row3);
+  std::vector<const Row*> results;
+  container.iterator([&results](const Row* row) { results.push_back(row); });
+  EXPECT_EQ(results.size(), 3);
+  EXPECT_EQ(results[0]->a, 1);
+  EXPECT_EQ(results[0]->b, 5);
+}

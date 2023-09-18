@@ -1,8 +1,10 @@
 #pragma once
 
 #include <iostream>
+#include <list>
 #include <sstream>
 #include <string>
+#include <vector>
 
 // 表示一行数据
 typedef struct Row {
