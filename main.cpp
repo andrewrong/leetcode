@@ -97,7 +97,7 @@ TaskResult task3(const Row* rows, int nrows) {
   auto threadNum = std::thread::hardware_concurrency() - 1;
 
   for (int i = 0; i < threadNum; ++i) {
-    results.emplace_back(make_shared<BContainer>(10, 50));
+    results.emplace_back(make_shared<BContainer>());
   }
 
   // 根据 B 的值进行分组
@@ -151,16 +151,16 @@ void geneTestData(const string& filename) {
   mt19937 gen(rd());
   uniform_int_distribution<int> a_dist(3001, 10000);
   uniform_int_distribution<int> b_dist(0, 60);
-  for (int i = 0; i < 50000; i++) {
+  for (int i = 0; i < 5000; i++) {
     file << "1000," << b_dist(gen) << std::endl;
   }
-  for (int i = 0; i < 50000; i++) {
+  for (int i = 0; i < 5000; i++) {
     file << "2000," << b_dist(gen) << std::endl;
   }
-  for (int i = 0; i < 50000; i++) {
+  for (int i = 0; i < 5000; i++) {
     file << "3000," << b_dist(gen) << std::endl;
   }
-  for (int i = 0; i < 50000; i++) {
+  for (int i = 0; i < 5000; i++) {
     file << a_dist(gen) << "," << b_dist(gen) << std::endl;
   }
   file.close();

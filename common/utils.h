@@ -13,51 +13,40 @@
 
 class BContainer {
  public:
-  BContainer(int start, int end) {
-    if (start < 0 || end < 0 || start > end) {
-      throw std::runtime_error("BContainer init error");
-    }
-
-    this->offset = start;
-    auto tmp = end - start;
-    for (auto i = 0; i < tmp; i++) {
-      datas.push_back(std::list<const Row*>());
-    }
-  }
+  BContainer() {}
 
   void insert(const Row* row) {
-    auto idx = row->b - offset;
-    if (idx < 0 || idx >= datas.size()) {
-      throw std::runtime_error("BContainer insert error");
+    if (datas.find(row->b) == datas.end()) {
+      datas[row->b] = std::list<const Row*>();
     }
-    datas[idx].push_back(row);
+    datas[row->b].push_back(row);
   }
   // 合并 first 和 second，返回合并后的 BContainer
   static std::shared_ptr<BContainer> merge(
       std::shared_ptr<BContainer>& first,
       std::shared_ptr<BContainer>& second) {
-    if (first->offset != second->offset ||
-        first->datas.size() != second->datas.size()) {
-      throw std::runtime_error("BContainer merge error");
+    for (auto& item : second->datas) {
+      if (first->datas.find(item.first) == first->datas.end()) {
+        first->datas[item.first] = std::move(item.second);
+      } else {
+        first->datas[item.first].splice(first->datas[item.first].end(),
+                                        item.second);
+      }
     }
-    int size = first->datas.size();
-    for (int i = 0; i < size; i++) {
-      first->datas[i].splice(first->datas[i].end(), second->datas[i]);
-    }
+
     return first;
   }
 
   void iterator(std::function<void(const Row*)> fn) {
     for (auto& item : datas) {
-      for (auto& row : item) {
+      for (auto& row : item.second) {
         fn(row);
       }
     }
   }
 
  private:
-  int offset{0};
-  std::vector<std::list<const Row*>> datas;
+  std::map<int, std::list<const Row*>> datas;
 };
 
 struct TaskResult {

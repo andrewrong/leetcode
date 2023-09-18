@@ -414,54 +414,90 @@ TEST(GetRowsInSortArrayTest, EmptyInput) {
   EXPECT_EQ(results.size(), 0);
 }
 
-TEST(BContainerTest, Insert) {
-  BContainer container(0, 10);
-  Row row1 = {1, 5};
-  Row row2 = {2, 7};
-  Row row3 = {3, 12};
-  container.insert(&row1);
-  container.insert(&row2);
-  EXPECT_THROW(container.insert(&row3), std::runtime_error);
+TEST(BContainerTest, InsertAndIterator) {
+  std::vector<Row> rows = {
+      {1, 1},
+      {1, 3},
+      {2, 4},
+      {2, 2},
+  };
+  std::shared_ptr<BContainer> container = std::make_shared<BContainer>();
+  for (auto& row : rows) {
+    container->insert(&row);
+  }
+
+  std::vector<const Row*> results;
+  auto fn = [&results](const Row* data) { results.push_back(data); };
+  container->iterator(fn);
+
+  EXPECT_EQ(results.size(), 4);
+  EXPECT_EQ(results[0]->a, 1);
+  EXPECT_EQ(results[0]->b, 1);
+  EXPECT_EQ(results[1]->a, 2);
+  EXPECT_EQ(results[1]->b, 2);
+  EXPECT_EQ(results[2]->a, 1);
+  EXPECT_EQ(results[2]->b, 3);
+  EXPECT_EQ(results[3]->a, 2);
+  EXPECT_EQ(results[3]->b, 4);
 }
 
 TEST(BContainerTest, Merge) {
-  auto container1 = std::make_shared<BContainer>(0, 20);
-  auto container2 = std::make_shared<BContainer>(0, 20);
-  Row row1 = {1, 5};
-  Row row2 = {2, 7};
-  Row row3 = {3, 12};
-  container1->insert(&row1);
-  container1->insert(&row2);
-  container2->insert(&row3);
-  auto merged = BContainer::merge(container1, container2);
+  std::vector<Row> rows1 = {
+      {1, 1},
+      {1, 3},
+  };
+  std::vector<Row> rows2 = {
+      {2, 2},
+      {2, 4},
+  };
+  std::shared_ptr<BContainer> container1 = std::make_shared<BContainer>();
+  std::shared_ptr<BContainer> container2 = std::make_shared<BContainer>();
+  for (auto& row : rows1) {
+    container1->insert(&row);
+  }
+  for (auto& row : rows2) {
+    container2->insert(&row);
+  }
+
+  std::shared_ptr<BContainer> merged =
+      BContainer::merge(container1, container2);
+
   std::vector<const Row*> results;
-  merged->iterator([&results](const Row* row) { results.push_back(row); });
-  EXPECT_EQ(results.size(), 3);
+  auto fn = [&results](const Row* data) { results.push_back(data); };
+  merged->iterator(fn);
+
+  EXPECT_EQ(results.size(), 4);
   EXPECT_EQ(results[0]->a, 1);
-  EXPECT_EQ(results[0]->b, 5);
+  EXPECT_EQ(results[0]->b, 1);
   EXPECT_EQ(results[1]->a, 2);
-  EXPECT_EQ(results[1]->b, 7);
-  EXPECT_EQ(results[2]->a, 3);
-  EXPECT_EQ(results[2]->b, 12);
+  EXPECT_EQ(results[1]->b, 2);
+  EXPECT_EQ(results[2]->a, 1);
+  EXPECT_EQ(results[2]->b, 3);
+  EXPECT_EQ(results[3]->a, 2);
+  EXPECT_EQ(results[3]->b, 4);
 }
 
-TEST(BContainerTest, MergeError) {
-  auto container1 = std::make_shared<BContainer>(0, 10);
-  auto container2 = std::make_shared<BContainer>(5, 15);
-  EXPECT_THROW(BContainer::merge(container1, container2), std::runtime_error);
-}
+TEST(BContainerTest, MergeEmpty) {
+  std::vector<Row> rows = {
+      {1, 1},
+      {1, 3},
+  };
+  std::shared_ptr<BContainer> container1 = std::make_shared<BContainer>();
+  std::shared_ptr<BContainer> container2 = std::make_shared<BContainer>();
+  for (auto& row : rows) {
+    container1->insert(&row);
+  }
 
-TEST(BContainerTest, Iterator) {
-  BContainer container(0, 20);
-  Row row1 = {1, 5};
-  Row row2 = {2, 7};
-  Row row3 = {3, 12};
-  container.insert(&row1);
-  container.insert(&row2);
-  container.insert(&row3);
-  std::vector<const Row*> results;
-  container.iterator([&results](const Row* row) { results.push_back(row); });
-  EXPECT_EQ(results.size(), 3);
-  EXPECT_EQ(results[0]->a, 1);
-  EXPECT_EQ(results[0]->b, 5);
+  std::shared_ptr<BContainer> merged1 =
+      BContainer::merge(container1, container2);
+
+  std::vector<const Row*> results1;
+  auto fn1 = [&results1](const Row* data) { results1.push_back(data); };
+  merged1->iterator(fn1);
+
+  EXPECT_EQ(results1.size(), 2);
+  EXPECT_EQ(results1[0]->a, 1);
+  EXPECT_EQ(results1[0]->b, 1);
+  EXPECT_EQ(results1[1]->a, 1);
+  EXPECT_EQ(results1[1]->b, 3);
 }
