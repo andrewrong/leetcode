@@ -4,7 +4,8 @@
 add_library(kit_cpp INTERFACE)
 
 # 设置库的包含目录
-target_include_directories(kit_cpp INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(kit_cpp INTERFACE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/print/pfr/include)
+
 
 # 如果需要创建测试可执行文件
 if(BUILD_TESTING)
