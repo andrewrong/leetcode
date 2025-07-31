@@ -1,0 +1,1 @@
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lc_00142_linked_list_cycle_2)
