@@ -1,0 +1,2 @@
+add_executable(lc_00541_reverse_string_ii_solution solution.cpp solution.h)
+target_link_libraries(lc_00541_reverse_string_ii_solution PRIVATE kit_cpp)
