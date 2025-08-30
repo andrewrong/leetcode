@@ -16,6 +16,9 @@ This file provides a brief overview of the LeetCode problems implemented in this
 ### #27. Remove Element
 **Problem:** Given an integer array `nums` and an integer `val`, remove all occurrences of `val` in `nums` in-place and return the number of elements remaining.
 
+### #42. Trapping Rain Water
+**Problem:** Given `n` non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
+
 ### #28. Find the Index of the First Occurrence in a String
 **Problem:** Given two strings, `needle` and `haystack`, return the index of the first occurrence of `needle` in `haystack`, or `-1` if `needle` is not part of `haystack`.
 
@@ -73,5 +76,44 @@ This file provides a brief overview of the LeetCode problems implemented in this
 ### #150. Evaluate Reverse Polish Notation
 **Problem:** Given an array of strings `tokens` that represents an arithmetic expression in Reverse Polish Notation, evaluate the expression and return its integer value. The valid operators are `+`, `-`, `*`, `/`, and division truncates toward zero.
 
+### #145. Binary Tree Postorder Traversal
+**Problem:** Given the `root` of a binary tree, return the postorder traversal of its nodes' values.
+
 ### #239. Sliding Window Maximum
 **Problem:** You are given an array of integers `nums` and an integer `k`. A sliding window of size `k` moves from the very left to the very right of the array. Return an array of the maximum values found in each window.
+
+### #347. Top K Frequent Elements
+**Problem:** Given an integer array `nums` and an integer `k`, return the `k` most frequent elements. You may return the answer in any order.
+
+### #94. Binary Tree Inorder Traversal
+**Problem:** Given the `root` of a binary tree, return the inorder traversal of its nodes' values.
+
+### #144. Binary Tree Preorder Traversal
+**Problem:** Given the `root` of a binary tree, return the preorder traversal of its nodes' values.
+
+### #102. Binary Tree Level Order Traversal
+**Problem:** Given the `root` of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+
+### #101. Symmetric Tree
+**Problem:** Given the `root` of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+
+### #104. Maximum Depth of Binary Tree
+**Problem:** Given the `root` of a binary tree, return its maximum depth. A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+
+### #111. Minimum Depth of Binary Tree
+**Problem:** Given a binary tree, find its minimum depth. The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node. A leaf is a node with no children.
+
+### #226. Invert Binary Tree
+**Problem:** Given the `root` of a binary tree, invert the tree, and return its root. Inverting a binary tree means swapping every node's left and right children recursively throughout the tree.
+
+### #110. Balanced Binary Tree
+**Problem:** Given a binary tree, determine if it is height-balanced. A height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differs by more than one.
+
+### #257. Binary Tree Paths
+**Problem:** Given the `root` of a binary tree, return all root-to-leaf paths in any order. A leaf is a node with no children.
+
+### #106. Construct Binary Tree from Inorder and Postorder Traversal
+**Problem:** Given two integer arrays `inorder` and `postorder`, where `inorder` is the inorder traversal of a binary tree and `postorder` is the postorder traversal of the same tree, construct and return the binary tree.
+
+### #112. Path Sum
+**Problem:** Given the `root` of a binary tree and an integer `targetSum`, return `true` if the tree has a root-to-leaf path such that the sum of all values along the path equals `targetSum`. A leaf is a node with no children.

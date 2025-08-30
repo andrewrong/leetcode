@@ -1,0 +1,5 @@
+add_library(lc_00226_invert_binary_tree_cpp solution.cpp)
+target_include_directories(lc_00226_invert_binary_tree_cpp PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+add_executable(lc_00226_invert_binary_tree_cpp_test solution_test.cpp)
+target_link_libraries(lc_00226_invert_binary_tree_cpp_test lc_00226_invert_binary_tree_cpp gtest gtest_main)
