@@ -112,8 +112,49 @@ This file provides a brief overview of the LeetCode problems implemented in this
 ### #257. Binary Tree Paths
 **Problem:** Given the `root` of a binary tree, return all root-to-leaf paths in any order. A leaf is a node with no children.
 
+### #105. Construct Binary Tree from Preorder and Inorder Traversal
+**Problem:** Given two integer arrays `preorder` and `inorder`, where `preorder` is the preorder traversal of a binary tree and `inorder` is the inorder traversal of the same tree, construct and return the binary tree.
+
 ### #106. Construct Binary Tree from Inorder and Postorder Traversal
 **Problem:** Given two integer arrays `inorder` and `postorder`, where `inorder` is the inorder traversal of a binary tree and `postorder` is the postorder traversal of the same tree, construct and return the binary tree.
 
 ### #112. Path Sum
 **Problem:** Given the `root` of a binary tree and an integer `targetSum`, return `true` if the tree has a root-to-leaf path such that the sum of all values along the path equals `targetSum`. A leaf is a node with no children.
+
+### #617. Merge Two Binary Trees
+**Problem:** You are given two binary trees, `root1` and `root2`. Imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not. You need to merge the two trees into a new binary tree. The merge rule is:
+- If two nodes overlap, sum their values as the new value of the merged node.
+- Otherwise, the non-null node becomes the node of the new tree.
+Return the merged tree. Note that the merging process must start from the root nodes of both trees.
+
+### #700. Search in a Binary Search Tree
+**Problem:** You are given the `root` of a binary search tree (BST) and an integer `val`. Find the node in the BST that has the value equal to `val` and return the subtree rooted with that node. If such a node does not exist, return `null`.
+
+### #98. Validate Binary Search Tree
+**Problem:** Given the `root` of a binary tree, determine if it is a valid binary search tree (BST). A valid BST is defined as follows:
+- The left subtree of a node contains only nodes with keys less than the node's key.
+- The right subtree of a node contains only nodes with keys greater than the node's key.
+- Both the left and right subtrees must also be binary search trees.
+
+### #530. Minimum Absolute Difference in BST
+**Problem:** Given the `root` of a Binary Search Tree (BST), return the minimum absolute difference between the values of any two different nodes in the tree.
+
+### #501. Find Mode in Binary Search Tree
+**Problem:** Given the `root` of a binary search tree (BST) with duplicates, return all the mode(s) (i.e., the most frequently occurred element) in it. If the tree has more than one mode, return them in any order.
+
+### #236. Lowest Common Ancestor of a Binary Tree
+**Problem:** Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree. According to the definition of LCA on Wikipedia: "The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself)."
+
+### #701. Insert into a Binary Search Tree
+**Problem:** You are given the root node of a binary search tree (BST) and a value to insert into the tree. Return the root node of the BST after the insertion. It is guaranteed that the new value does not exist in the original BST.
+
+There may be multiple valid ways for the insertion, as long as the tree remains a BST after insertion. You can return any of them.
+
+### #450. Delete Node in a BST
+**Problem:** Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.
+
+### #108. Convert Sorted Array to Binary Search Tree
+**Problem:** Given an integer array `nums` where the elements are sorted in ascending order, convert it to a height-balanced binary search tree. A height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differs by more than one.
+
+### #669. Trim a Binary Search Tree
+**Problem:** Given the `root` of a binary search tree and the lowest and highest boundaries as `low` and `high`, trim the tree so that all its elements lie in `[low, high]`. Trimming the tree should not change the relative structure of the elements that remain in the tree. Return the root of the trimmed binary search tree.
