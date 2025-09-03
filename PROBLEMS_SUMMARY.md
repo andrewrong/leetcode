@@ -158,3 +158,8 @@ There may be multiple valid ways for the insertion, as long as the tree remains 
 
 ### #669. Trim a Binary Search Tree
 **Problem:** Given the `root` of a binary search tree and the lowest and highest boundaries as `low` and `high`, trim the tree so that all its elements lie in `[low, high]`. Trimming the tree should not change the relative structure of the elements that remain in the tree. Return the root of the trimmed binary search tree.
+\n### #216. Combination Sum III\n**Problem:** Find all valid combinations of k numbers that sum up to n such that the following conditions are true:\n- Only numbers 1 through 9 are used.\n- Each number is used at most once.\n- Return a list of all possible valid combinations. The list must not contain the same combination twice, and the combinations may be returned in any order.\n
+
+### #17. Letter Combinations of a Phone Number
+**Problem:** Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order. A mapping of digits to letters is similar to a telephone keypad.
+
