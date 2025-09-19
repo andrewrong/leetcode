@@ -1,0 +1,2 @@
+add_library(lc_00131_palindrome_partitioning_cpp solution.cpp)
+target_link_libraries(lc_00131_palindrome_partitioning_cpp gtest gtest_main)

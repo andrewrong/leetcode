@@ -23,3 +23,6 @@ go.work
 # Build directory
 build/
 bin/
+
+# Debug binaries
+__debug_bin*

@@ -163,3 +163,56 @@ There may be multiple valid ways for the insertion, as long as the tree remains 
 ### #17. Letter Combinations of a Phone Number
 **Problem:** Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order. A mapping of digits to letters is similar to a telephone keypad.
 
+
+### #39. Combination Sum
+**Problem:** Given an array of distinct integers `candidates` and a target integer `target`, return a list of all unique combinations of candidates where the chosen numbers sum to `target`. You may return the combinations in any order. The same number may be chosen from candidates an unlimited number of times. Two combinations are unique if the frequency of at least one of the chosen numbers is different.
+
+
+### #40. Combination Sum II
+**Problem:** Given a collection of candidate numbers () and a target number (), find all unique combinations in  where the candidate numbers sum to . Each number in  may only be used once in the combination. The solution set must not contain duplicate combinations.
+
+
+### #40. Combination Sum II
+**Problem:** Given a collection of candidate numbers () and a target number (), find all unique combinations in  where the candidate numbers sum to . Each number in  may only be used once in the combination. The solution set must not contain duplicate combinations.
+
+### #40. Combination Sum II
+**Problem:** Given a collection of candidate numbers (`candidates`) and a target number (`target`), find all unique combinations in `candidates` where the candidate numbers sum to `target`. Each number in `candidates` may only be used once in the combination. The solution set must not contain duplicate combinations.
+
+### #46. Permutations
+**Problem:** Given an array `nums` of distinct integers, return all the possible permutations. You can return the answer in any order.
+
+### #47. Permutations II
+**Problem:** Given a collection of numbers that might contain duplicates, return all possible unique permutations in any order.
+
+### #78. Subsets
+**Problem:** Given an integer array `nums` of unique elements, return all possible subsets (the power set). The solution set must not contain duplicate subsets. Return the solution in any order.
+
+
+### #93. Restore IP Addresses
+**Problem:** Given a string containing only digits, restore it by returning all possible valid IP address combinations. A valid IP address consists of exactly four integers separated by single dots. Each integer is between 0 and 255 (inclusive) and cannot have leading zeros.
+
+### #90. Subsets II
+**Problem:** Given an integer array `nums` that may contain duplicates, return all possible subsets (the power set). The solution set must not contain duplicate subsets. Return the solution in any order.
+
+### #131. Palindrome Partitioning
+**Problem:** Given a string `s`, partition `s` such that every substring of the partition is a palindrome. Return all possible palindrome partitioning of `s`.
+
+### #491. Non-decreasing Subsequences
+**Problem:** Given an integer array `nums`, return all the different possible non-decreasing subsequences of the given array with at least two elements. You may return the answer in any order.
+
+### #37. Sudoku Solver
+**Problem:** Write a program to solve a Sudoku puzzle by filling the empty cells.
+A sudoku solution must satisfy all of the following rules:
+- Each of the digits 1-9 must occur exactly once in each row.
+- Each of the digits 1-9 must occur exactly once in each column.
+- Each of the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid.
+The '.' character indicates empty cells.
+
+### #51. N-Queens
+**Problem:** The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other. Given an integer n, return all distinct solutions to the n-queens puzzle. Each solution represents a distinct board configuration where 'Q' indicates a queen and '.' indicates an empty space.
+
+### #455. Assign Cookies
+**Problem:** Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie. Each child i has a greed factor g[i], which is the minimum size of a cookie that the child will be content with; and each cookie j has a size s[j]. If s[j] >= g[i], we can assign the cookie j to the child i, and the child i will be content. Your goal is to maximize the number of your content children and output the maximum number.
+
+### #376. Wiggle Subsequence
+**Problem:** Given an integer array `nums`, return the length of the longest wiggle subsequence of `nums`. A wiggle sequence is a sequence where the differences between successive numbers strictly alternate between positive and negative. For example, [1, 7, 4, 9, 2, 5] is a wiggle sequence because the differences (6, -3, 5, -7, 3) are alternately positive and negative. A subsequence is obtained by deleting some elements (possibly zero) from the original sequence, leaving the remaining elements in their original order.
